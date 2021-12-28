@@ -21,7 +21,8 @@ sed -i "s#group = nobody.*#group = abc#g" /etc/php8/php-fpm.d/www.conf
 
 # create override for www.conf if it doesn't exist
 [[ ! -f /config/php/www2.conf ]] && \
-    printf "; Edit this file to override www.conf and php-fpm.conf directives and restart the container\\n\\n; Pool name\\n[www]\\n\\n" > /config/php/www2.conf
+    printf "; Edit this file to override www.conf and php-fpm.conf directives and restart the container\\n\\n; Pool name\\n[www]\\n\\n" > /config/php/www2.conf && \
+    echo "clear_env = no" >> /config/php/www2.conf
 
 # copy user www2.conf to image
 cp /config/php/www2.conf /etc/php8/php-fpm.d/www2.conf
